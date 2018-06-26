@@ -1,0 +1,162 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>领料申请单</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/login.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+</head>
+<body>
+    <div class="wrap">
+        <!--<nav>
+            <h1>领料申请表</h1></nav>-->
+        <div class="content container">
+            <div class="row">
+                <p class="pull-right">编号：MCM231</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color bg-info">
+                    仓库名称
+                </div>
+                <div class="col-xs-8  dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="" id="Warehouse">选择仓库</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu table-hover" id="Warehouse-menu" aria-labelledby="drop1">
+                        <li>辅料库</li>
+                        <li>纸张库</li>
+                        <li>成品库</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">制单日期</span></div>
+                <div class="col-xs-6">@Session["date"]</div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">单 号</span></div>
+                <div class="col-xs-6 red"><span>MO_201805_0001</span></div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 color bg-info">
+                    领用部门
+                </div>
+                <div class="col-xs-8  dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="" id="department">选择部门</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu table-hover" aria-labelledby="drop1" id="department-menu">
+                        <li>Action</li>
+                        <li>Another action</li>
+                        <li>Something else here</li>
+                    </ul>
+                </div>
+            </div>
+    
+    
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">领用机台</span></div>
+                <div class="col-xs-8   dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="" id="machine">选择机台</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu table-hover" aria-labelledby="drop1" id="machine-menu">
+                        <li>Action</li>
+                        <li>Another action</li>
+                        <li>Something else here</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn  bg-info">领用班组</span></div>
+                <div class="col-xs-6"></div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">领用说明</span></div>
+                <div class="col-xs-8"><input type="text" class="form-control" /></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">出库方式</span></div>
+                <div class="col-xs-8"><input type="text" class="form-control" /></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><a class="btn btn-block bg-info" href="/LingLiaoApply/LingLiaoDetail" style="letter-spacing:0;">领用明细</a></div>
+                <div class="col-xs-6 col-xs-offset-1" id="detail"><a class="btn bg-info" href="#">领用0种</a></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <a href="#" class="col-xs-6 text-center border">待审核</a>
+                <a href="#" class=" col-xs-6 text-center">已审核</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {     
+        $("#department-menu").on("click", " li", function () {
+            var text = $(this).text();
+            $("#department").html(text);
+        })
+        $("#Warehouse-menu").on("click", " li", function () {
+            var text = $(this).text();
+            $("#Warehouse").html(text);
+        })
+        $("#machine-menu").on("click", " li", function () {
+            var text = $(this).text();
+            $("#machine").html(text);
+        })
+        //$.post("", {}, function (e) {
+        //    console.log(e)
+        //    //var html = "";
+        //    //$.each(e, function (index, item) {
+        //    //    html += "<li>" + item.name + "</li>";
+        //    //})
+        //    //$("#department-menu").html(html);
+        //});
+        $.ajax({
+            url: "/LingLiaoApply/GetDepartment",
+            success: function (data) {
+               var html = "";
+                $.each(data, function (index, item) {
+                    html += "<li>" + item.name + "</li>";
+                })
+                $("#department-menu").html(html);
+            },
+            error: function (data) {
+                alert("我错了" + data);
+            }
+        })
+        $.post("/LingLiaoApply/Machine", {}, function (e) {
+            var html = "";
+            $.each(e, function (index, item) {
+                html += "<li>" + item.name + "</li>";
+            })
+            $("#machine-menu").html(html);
+        })
+
+
+
+    })
+</script>

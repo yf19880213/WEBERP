@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ERPMSModelStoreContainer" CdmEntityContainer="ERPMSEntities1">
+    <EntitySetMapping Name="Purchase">
+      <EntityTypeMapping TypeName="ERPMSModel.Purchase">
+        <MappingFragment StoreEntitySet="Purchase">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SaleMane" ColumnName="SaleMane" />
+          <ScalarProperty Name="CaigouDate" ColumnName="CaigouDate" />
+          <ScalarProperty Name="Auditoring" ColumnName="Auditoring" />
+          <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+          <ScalarProperty Name="Exmaine" ColumnName="Exmaine" />
+          <ScalarProperty Name="ExaminCommen" ColumnName="ExaminCommen" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="ApplyCommen" ColumnName="ApplyCommen" />
+          <ScalarProperty Name="Responsibity" ColumnName="Responsibity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseDetail">
+      <EntityTypeMapping TypeName="ERPMSModel.PurchaseDetail">
+        <MappingFragment StoreEntitySet="PurchaseDetail">
+          <ScalarProperty Name="单价" ColumnName="单价" />
+          <ScalarProperty Name="总金额" ColumnName="总金额" />
+          <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+          <ScalarProperty Name="供应商编码" ColumnName="供应商编码" />
+          <ScalarProperty Name="CailiaoId" ColumnName="CailiaoId" />
+          <ScalarProperty Name="CailiaoName" ColumnName="CailiaoName" />
+          <ScalarProperty Name="Num" ColumnName="Num" />
+          <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SYS_用户信息表">
+      <EntityTypeMapping TypeName="ERPMSModel.SYS_用户信息表">
+        <MappingFragment StoreEntitySet="SYS_用户信息表">
+          <ScalarProperty Name="编码" ColumnName="编码" />
+          <ScalarProperty Name="姓名" ColumnName="姓名" />
+          <ScalarProperty Name="登录名" ColumnName="登录名" />
+          <ScalarProperty Name="密码" ColumnName="密码" />
+          <ScalarProperty Name="权限" ColumnName="权限" />
+          <ScalarProperty Name="类型" ColumnName="类型" />
+          <ScalarProperty Name="工作组" ColumnName="工作组" />
+          <ScalarProperty Name="AM_SERVER" ColumnName="AM_SERVER" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_MIMS_材料编码表">
+      <EntityTypeMapping TypeName="ERPMSModel.T_MIMS_材料编码表">
+        <MappingFragment StoreEntitySet="T_MIMS_材料编码表">
+          <ScalarProperty Name="禁用标识" ColumnName="禁用标识" />
+          <ScalarProperty Name="废料标志" ColumnName="废料标志" />
+          <ScalarProperty Name="废料名称" ColumnName="废料名称" />
+          <ScalarProperty Name="废料编码" ColumnName="废料编码" />
+          <ScalarProperty Name="主料标志" ColumnName="主料标志" />
+          <ScalarProperty Name="辅料标志" ColumnName="辅料标志" />
+          <ScalarProperty Name="安全库存下限" ColumnName="安全库存下限" />
+          <ScalarProperty Name="安全库存上限" ColumnName="安全库存上限" />
+          <ScalarProperty Name="图片存储路径" ColumnName="图片存储路径" />
+          <ScalarProperty Name="计划单价" ColumnName="计划单价" />
+          <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+          <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+          <ScalarProperty Name="材料编码" ColumnName="材料编码" />
+          <ScalarProperty Name="仓库编码" ColumnName="仓库编码" />
+          <ScalarProperty Name="材料类别编码" ColumnName="材料类别编码" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_MIMS_材料类别编码表">
+      <EntityTypeMapping TypeName="ERPMSModel.T_MIMS_材料类别编码表">
+        <MappingFragment StoreEntitySet="T_MIMS_材料类别编码表">
+          <ScalarProperty Name="统计类别" ColumnName="统计类别" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="材料类别名称" ColumnName="材料类别名称" />
+          <ScalarProperty Name="材料类别编码" ColumnName="材料类别编码" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_岗位编码表">
+      <EntityTypeMapping TypeName="ERPMSModel.Table_岗位编码表">
+        <MappingFragment StoreEntitySet="Table_岗位编码表">
+          <ScalarProperty Name="Flag" ColumnName="Flag" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="部门编码" ColumnName="部门编码" />
+          <ScalarProperty Name="岗位系数" ColumnName="岗位系数" />
+          <ScalarProperty Name="岗位名称" ColumnName="岗位名称" />
+          <ScalarProperty Name="岗位编码" ColumnName="岗位编码" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_EMMS_生产设备编码表">
+      <EntityTypeMapping TypeName="ERPMSModel.T_EMMS_生产设备编码表">
+        <MappingFragment StoreEntitySet="T_EMMS_生产设备编码表">
+          <ScalarProperty Name="最高工作速度" ColumnName="最高工作速度" />
+          <ScalarProperty Name="最大工作压力" ColumnName="最大工作压力" />
+          <ScalarProperty Name="重量" ColumnName="重量" />
+          <ScalarProperty Name="纸张厚度" ColumnName="纸张厚度" />
+          <ScalarProperty Name="最小尺寸" ColumnName="最小尺寸" />
+          <ScalarProperty Name="最大尺寸" ColumnName="最大尺寸" />
+          <ScalarProperty Name="型号" ColumnName="型号" />
+          <ScalarProperty Name="机型类别" ColumnName="机型类别" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="设备状况" ColumnName="设备状况" />
+          <ScalarProperty Name="照片编码" ColumnName="照片编码" />
+          <ScalarProperty Name="总功率" ColumnName="总功率" />
+          <ScalarProperty Name="设备类别" ColumnName="设备类别" />
+          <ScalarProperty Name="外形尺寸" ColumnName="外形尺寸" />
+          <ScalarProperty Name="产能" ColumnName="产能" />
+          <ScalarProperty Name="准备工时" ColumnName="准备工时" />
+          <ScalarProperty Name="生产厂家" ColumnName="生产厂家" />
+          <ScalarProperty Name="存放地点" ColumnName="存放地点" />
+          <ScalarProperty Name="保管人" ColumnName="保管人" />
+          <ScalarProperty Name="使用部门编码" ColumnName="使用部门编码" />
+          <ScalarProperty Name="使用日期" ColumnName="使用日期" />
+          <ScalarProperty Name="购入日期" ColumnName="购入日期" />
+          <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+          <ScalarProperty Name="设备名称" ColumnName="设备名称" />
+          <ScalarProperty Name="设备编号" ColumnName="设备编号" />
+          <ScalarProperty Name="设备简称" ColumnName="设备简称" />
+          <ScalarProperty Name="设备编码" ColumnName="设备编码" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_组织编码表">
+      <EntityTypeMapping TypeName="ERPMSModel.Table_组织编码表">
+        <MappingFragment StoreEntitySet="Table_组织编码表">
+          <ScalarProperty Name="质量把控" ColumnName="质量把控" />
+          <ScalarProperty Name="备注" ColumnName="备注" />
+          <ScalarProperty Name="车间属性" ColumnName="车间属性" />
+          <ScalarProperty Name="电话" ColumnName="电话" />
+          <ScalarProperty Name="负责人" ColumnName="负责人" />
+          <ScalarProperty Name="班组标识" ColumnName="班组标识" />
+          <ScalarProperty Name="车间标识" ColumnName="车间标识" />
+          <ScalarProperty Name="科室标识" ColumnName="科室标识" />
+          <ScalarProperty Name="上级编码" ColumnName="上级编码" />
+          <ScalarProperty Name="名称" ColumnName="名称" />
+          <ScalarProperty Name="编码" ColumnName="编码" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_FCMS_统计_供应商明细表">
+      <EntityTypeMapping TypeName="ERPMSModel.T_FCMS_统计_供应商明细表">
+        <MappingFragment StoreEntitySet="T_FCMS_统计_供应商明细表">
+          <ScalarProperty Name="付款金额" ColumnName="付款金额" />
+          <ScalarProperty Name="开票金额" ColumnName="开票金额" />
+          <ScalarProperty Name="金额" ColumnName="金额" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+          <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+          <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+          <ScalarProperty Name="制单日期" ColumnName="制单日期" />
+          <ScalarProperty Name="订单号" ColumnName="订单号" />
+          <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+          <ScalarProperty Name="供应商编码" ColumnName="供应商编码" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="T_PHMS_统计_供应商明细表">
+      <EntityTypeMapping TypeName="ERPMSModel.T_PHMS_统计_供应商明细表">
+        <MappingFragment StoreEntitySet="T_PHMS_统计_供应商明细表">
+          <ScalarProperty Name="付款金额" ColumnName="付款金额" />
+          <ScalarProperty Name="开票金额" ColumnName="开票金额" />
+          <ScalarProperty Name="金额" ColumnName="金额" />
+          <ScalarProperty Name="数量" ColumnName="数量" />
+          <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+          <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+          <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+          <ScalarProperty Name="制单日期" ColumnName="制单日期" />
+          <ScalarProperty Name="订单号" ColumnName="订单号" />
+          <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+          <ScalarProperty Name="供应商编码" ColumnName="供应商编码" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

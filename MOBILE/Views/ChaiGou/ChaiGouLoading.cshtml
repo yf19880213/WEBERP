@@ -1,0 +1,121 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <style>
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+        #CheckType tr {
+            min-height: 31px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="wrap">
+        <!--<nav>
+            <h1>采购申请表</h1></nav>-->
+        <div class="content container">
+            <div class="row">
+                <p class="pull-right">编号：MCM231</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color bg-info">
+                    申请部门
+                </div>
+                <div class="col-xs-8  dropdown">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="" id="department">选择部门</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu table-hover" aria-labelledby="drop1">
+                        <li>Action</li>
+                        <li>Another action</li>
+                        <li>Something else here</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请单号</span></div>
+                <div class="col-xs-6 red"><span id="danghao"></span></div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请日期</span></div>              
+                <div class="col-xs-6" id="date"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请人</span></div>
+                <div class="col-xs-6" id="name"></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn  bg-info">单据类型</span></div>
+                <div class="col-xs-6">普通单据</div>
+
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn  bg-info">负责人</span></div>
+                <div class="col-xs-6"><input type="text" class="form-control" /></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请说明</span></div>
+                <div class="col-xs-8"><input type="text" class="form-control" /></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><a class="btn btn-block bg-info" href="javascript:;" id="_loading">采购明细</a></div>
+                <div class="col-xs-6 col-xs-offset-1" id="detail"><a class="btn bg-info" href="#">总计 @*@ViewBag.count*@ 种</a></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <a href="javascript:;" class="col-xs-6 text-center border" id="loading">待审核<b class="loading bg-red">2</b></a>
+                <a href="javascript:;" class=" col-xs-6 text-center" id="finishing">以审核<b class="finishing bg-red">2</b></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+<script type="text/javascript">
+    $.post("/ChaiGou/ChaiGouLoadingView", null, function (data) {
+        var date = new Date(Number(data.caigouData.split("(")[1].split(")")[0])).toLocaleDateString();
+        $("#danghao").html(data.masterId);
+        $('#_loading').attr('href', '/ChaiGou/ChaiGouUnAuDetail?masterId=' + data.masterId);
+        $("#date").html(date);
+        $("#name").html(data.name);
+    })
+
+    $.post("/ChaiGou/GetLoadingCount", null, function (res) {
+        if (res == '0') {
+            $(".loading").addClass("hide");
+            return;
+        }
+        $(".loading").removeClass("hide").text(res);
+    })
+    $.post("/ChaiGou/GetFinishCount", null, function (res) {
+        if (res == '0') {
+            $(".finishing").addClass("hide");
+            return;
+        }
+        $(".finishing").removeClass("hide").text(res);
+    })
+   
+</script>

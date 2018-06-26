@@ -1,0 +1,89 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <style>
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+
+        .container > .row {
+            height: 34px;
+            margin-top: 15px;
+           
+        }
+       .container{
+           padding-top:15px;
+       }
+        
+        .container > .row .col-xs-4 {
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>结果</th>
+                    <th>备注</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+        <div class="footer">
+            <div class="row">
+                <a href="/Home/Index" class="col-xs-6 text-center border" >主页</a>
+                <a href="/" class=" col-xs-6 text-center" >退出</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $(function () {
+        var html = "";
+        $.post("/Examine/ShengHe", null, function (e) {
+            if (e==null) return;
+            $.each(e, function (index, item) {
+                var text = item.authoring == 1 ? "通过" : "没通过";
+                var commen = item.examingCommen == "" || item.examingCommen==null? "" : item.examingCommen;
+                html += '<tr><td>' + item.master+'</td><td>'+text+'</td><td>'+commen+'</td></tr>'
+            });
+            $("tbody").html(html);
+        })
+
+        $("table").on("click", "tbody tr", function () {
+            var text = $(this).find("td").eq(0).text().trim();
+            location.href = "/Examine/ExamineDetail?masterId="+text;
+
+        })
+
+
+      
+
+    })
+
+</script>
+

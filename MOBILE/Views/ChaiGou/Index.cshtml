@@ -1,0 +1,182 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>采购申请单</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="~/Scripts/bootstrap.js"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <style>
+        #CheckType tr {
+            min-height: 31px;
+        }
+
+    </style>
+</head>
+@{ 
+    string ran = new Random().Next(1,100).ToString();
+    
+    }
+<body>
+
+    <div class="wrap">
+        <!--<nav>
+            <h1>采购申请表</h1></nav>-->
+        <div class="content container">
+            <div class="row">
+                <p class="pull-right">编号：MCM231</p>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color bg-info">
+                    申请部门
+                </div>
+                <div class="col-xs-8  dropdown text-left">
+                    <a id="drop1" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <span class="" id="department">选择部门</span>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu table-hover" aria-labelledby="drop1">
+                        <li>Action</li>
+                        <li>Another action</li>
+                        <li>Something else here</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请单号</span></div>
+             
+                <div class="col-xs-6 red text-left" id="danghao"> MO_@DateTime.Now.ToString("yyyy/MM/dd/hhmmssms")</div>
+                
+            </div>
+
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请日期</span></div>
+                @{
+
+                    <div class="col-xs-6 textleft">@DateTime.Now.ToString("yyyy/MM/dd")</div>
+                }
+
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请人</span></div>
+                <div class="col-xs-6 text-left" id="name">@Session["name"]</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn  bg-info">单据类型</span></div>
+                <div class="col-xs-6 text-left">普通单据</div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn  bg-info">负责人</span></div>
+                <div class="col-xs-6 text-left"><input type="text" class="form-control" id="responsperson"/></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><span class="btn bg-info">申请说明</span></div>
+                <div class="col-xs-8 text-left"><input type="text" class="form-control" id="ApplyCommen"/></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-4 color"><a class="btn btn-block bg-info"  id="Submmit">采购明细</a></div>
+                <div class="col-xs-6 col-xs-offset-1" id="detail"><a class="btn bg-info" href="#">总计 @*@ViewBag.count*@ 种</a></div>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <a href="javascript:;" class="col-xs-6 text-center border" id="loading">待审核<b class="loading bg-red">2</b></a>
+                <a href="javascript:;" class=" col-xs-6 text-center"  id="finishing">以审核<b class="finishing bg-red">2</b></a>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script type="text/javascript">
+    $(function () {
+        //部门
+        $.ajax({
+            url: "/ChaiGou/GetDepartment",
+            data: {danghao: $("#danghao").html() },
+            success: function (e) {
+                var html = "";
+                $.each(e, function (index,item) {
+                    html += "<li>"+item.name+"</li>";
+                })
+                $(".dropdown-menu").html(html);
+            },
+            error: function (e) {
+                alert("error " + e);
+            }
+        })
+        // 替换
+        $(".dropdown-menu").on("click", " li", function () {
+            var text = $(this).text();
+            $("#department").html(text);
+        });
+        // 待审核数量
+        $.post("/ChaiGou/GetLoadingCount", null, function (res) {
+            $(".loading").text(res);
+            if (res == '0') {
+                $(".loading").addClass("hide");
+                return;
+            }
+            $(".loading").removeClass("hide").text(res);
+        })
+        // 已审核数量
+        $.post("/ChaiGou/GetFinishCountPurduce", null, function (res) {
+            $(".finishing").text(res);
+            if (res == '0') {
+                $(".finishing").addClass("hide");
+                return;
+            }
+            $(".finishing").removeClass("hide").text(res);
+        })
+        //待审核点击
+        $("#loading").click(function () {
+                if ($(".loading").text() == '0') return;
+                if ($(".loading").text() == '1') {
+                    location.href = "/ChaiGou/ChaiGouLoading";
+                } else
+                    location.href = "/ChaiGou/BianMa";
+        })
+
+        //已审核点击
+        $("#finishing").click(function () {
+            if ($(this).find('b').text().trim() == '0')
+                location.href = "/Home/index";
+            else
+                location.href = "/Examine/Examine";
+        })
+        
+
+
+    })
+
+//点击跳转 
+    $("#Submmit").click(function () {
+        var json = {};
+        if ($("#department").text() == "选择部门" ||$("#name").text()=="" ) {
+            return;
+        }
+        json.SaleMane = $("#name").text().trim();
+        json.Responsibity = $("#responsperson").val().trim();
+        json.MasterId = $("#danghao").text().trim();
+        json.Auditoring = 0;
+        json.Department = $("#department").text().trim();
+        json.ApplyCommen = $("#ApplyCommen").val().trim();
+        $.post("/ChaiGou/ChaiGouInsert", { data: json }, function (e) {
+            if (e=="success") {
+                 location.href = "/ChaiGou/ChaiGouDetail";
+            }
+        })
+       
+    })
+
+</script>

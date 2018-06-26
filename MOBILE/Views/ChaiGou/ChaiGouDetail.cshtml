@@ -1,0 +1,160 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <script src="~/Scripts/ChaiGouDetail.js"></script>
+    <style>
+        body{
+            position:relative;
+        }
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+        .rowspace {
+            letter-spacing: 3px;
+            font-size:15px;
+        }
+        #alert{
+            position:absolute;
+            bottom:60%;
+            left:-5px;
+            width:100%;
+            transition:all 1s;
+            /*height:53px;*/
+            height:0px;
+            overflow:hidden;
+        }
+        #content .Choice{
+            text-align:left;
+            
+        }
+        #content .count {
+            text-align: right;
+        }
+        table{
+            max-height:150px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <input type="hidden"value="@ViewBag.masterId" id="masterId"/>
+        <div id="CheckType">
+            <div class="row header">
+                <div class="col-xs-4">材料编码</div>
+                <div class="col-xs-4">产品名称</div>
+                <div class="col-xs-4">数量</div>
+            </div>
+            <div id="content">
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                
+            </div>
+            
+        </div>
+        <!--------提交---------->
+        <div class="row rowspace" style="margin-top:20px;">
+            <div class="col-xs-4">
+                <a href="#" class="btn btn-block btn-info" id="submit">确定</a>
+            </div>
+            <div class="col-xs-4">
+                <a href="#" class="btn btn-block btn-info" id="cancel">取消</a>
+            </div>
+        </div>
+        <!----dialog1------->
+        <div class=" container dialog hide" id="typeName">
+            <div class="table">
+                <table class="table table-bordered table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>材料类别编码</th>
+                            <th>材料类别名称</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!------dialog2------------->
+        <div class=" container dialog hide" id="StuffName">
+            <div class="table">
+                <table class="table table-bordered table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>材料编码</th>
+                            <th>材料名称</th>
+                        </tr>
+                    </thead>
+                    <tbody id=""></tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!------dialog3 数量------------->
+        <div id="count" class=" hide">
+            <div><input class="form-control" maxlength="7" /></div>
+            <div>
+                <button class="btn btn-block">确定</button>
+            </div>
+        </div>
+        <!------dialog4 alert------------->
+        <div class="row rowspace" style="margin-top:20px;" id="alert">
+            <div class="col-xs-12">
+                <div class="alert alert-success" role="alert">数据添加成功</div>
+            </div>           
+        </div>
+    </div>
+</body>
+</html>

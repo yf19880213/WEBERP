@@ -1,0 +1,60 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <title>采购编码</title>
+    <style>
+        .row{
+            margin-top:20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="content container">
+
+        </div>    
+        <div class="container">
+            <div class="footer">
+                <div class="row">
+                    <a href="/Home/index" class="col-xs-6 text-center border" >主页</a>
+                    <a href="/Home/Apply" class=" col-xs-6 text-center" >退出</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    var count = 0;
+    $.post("/ChaiGou/GetLoadingCount", null, function (count) {
+        count = count;
+    })
+    $.post("/ChaiGou/GetLoadingDetail", null, function (list) {
+        var html = "";
+        $.each(list, function (index,item) {
+            html += '<div class="row">' +
+                '<div class="col-xs-4 color" onclick="fn(this)"><span class="btn bg-info">申请单号</span></div> ' +
+                '<div class="col-xs-6 red"><span id="danghao">' + item + '</span></div> </div> ';
+        })
+        $(".content").html(html);
+    })
+    function fn(e) {
+        var text = $(e).next().text().trim();
+        if (text.length != "")
+            location.href = "/ChaiGou/ChaiGouUnAuDetail?masterId="+text;
+    }
+
+
+
+</script>

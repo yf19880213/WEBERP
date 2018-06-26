@@ -1,0 +1,102 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <style>
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+
+        .container > .row {
+            height: 34px;
+            margin-top: 15px;
+        }
+
+        .container {
+            padding-top: 15px;
+        }
+
+            .container > .row .col-xs-4 {
+                padding-right: 0;
+            }
+
+        #content tr:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+ .table tbody tr:nth-of-type(2n) {
+            background: #eaeaea;
+            color: #000000;
+        }
+ .dialog1{
+     position:absolute;
+     top:20%;
+     left:10%;
+     right:10%;
+     background:#eeeeee;
+ }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-bordered table-hover" id="mainTable">
+            <thead>
+                <tr>
+                    <th>材料名称</th>
+                    <th>数量</th>
+                    <th>总计</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        
+        <div class="footer">
+            <div class="row">
+                <a href="/Home/Index" class="col-xs-6 text-center border">主页</a>
+                <a href="/" class=" col-xs-6 text-center">退出</a>
+            </div>
+        </div>
+    </div>
+    <!---dialog1---->
+    <div class="dialog1 hide">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>供应商编码</th>
+                    <th>材料名称</th>
+                    <th>单价</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-4">
+                    <a class="btn btn-block btn-primary">确定</a>
+                </div>
+                <div class="col-xs-4">
+                    <a class="btn btn-block btn-primary">取消</a>
+                </div>              
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/SupplierDetail.js"></script>

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="img/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="~/Scripts/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/login.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+</head>
+<body>
+    <div class="container">
+
+        <div class="login_main">
+            <div class="logo_img"><img src="~/images/logo.png" /></div>
+
+            <div class="logo_text">
+                <span class="animation">欢</span>
+                <span class="animation">迎</span>
+                <span class="animation">来</span>
+                <span class="animation">到</span>
+                <span class="animation">印</span>
+                <span class="animation">本</span>
+                <span class="animation">书</span>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><b></b><a class="btn btn-primary btn-block" href="/ChaiGou/index">采购申请</a></div>
+                <div class="col-xs-6"><a class="btn btn-primary btn-block" href="/ChaiGou/ChaiGouExamine">采购审核</a></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><a class="btn btn-primary btn-block" href="/Supplier/index">供应商报价</a></div>
+                <div class="col-xs-6"><a class="btn btn-primary btn-block" href="#">纸张出库</a></div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6"><a class="btn btn-primary btn-block" href="/LingLiaoApply/Index">领料申请</a></div>
+                <div class="col-xs-6"><a class="btn btn-primary btn-block" href="#">辅料出库</a></div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+<script>
+//	$(".logo_text span").eq(0).css({
+//
+//'webkitTransform':'scale(1)',
+//
+//'transform':'scale(1)'
+//});;
+		$(".logo_text span").eq(0).animate({"left":"3%","opacity":1});
+		$(".logo_text span").eq(1).animate({"opacity":1}).css({'webkitTransform':'rotate(15deg)','transform':'rotate(15deg)'});
+		$(".logo_text span").eq(2).css({'webkitTransform':'scale(1) rotate(15deg)','transform':'scale(1) rotate(15deg)',"opacity":1})
+		$(".logo_text span").eq(3).css({"top":0,"opacity":1});
+		$(".logo_text span").eq(4).css({'webkitTransform':'scale(1) rotate(-20deg)','transform':'scale(1) rotate(-20deg)',"opacity":1})
+
+		$(".logo_text span").eq(5).animate({"opacity":1}).css({'webkitTransform':'rotate(30deg)','transform':'rotate(30deg)'});
+			$(".logo_text span").eq(6).animate({"left":"88%","opacity":1});
+</script>
+

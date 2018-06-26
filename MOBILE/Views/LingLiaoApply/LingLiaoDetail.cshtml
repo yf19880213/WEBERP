@@ -1,0 +1,218 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <style>
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="CheckType">
+            <div class="row header">
+                <div class="col-xs-4">材料编码</div>
+                <div class="col-xs-4">产品名称</div>
+                <div class="col-xs-4">数量</div>
+            </div>
+            <div id="content">
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 Choice"></div>
+                    <div class="col-xs-4 count"></div>
+                </div>
+
+            </div>
+
+        </div>
+        <!--------提交---------->
+        <div class="row" style="margin-top:20px;">
+            <div class="col-xs-4">
+                <a href="#" class="btn btn-block btn-info" id="submit">确定</a>
+            </div>
+            <div class="col-xs-4">
+                <a href="#" class="btn btn-block btn-info">取消</a>
+            </div>
+        </div>
+        <!----dialog1------->
+        <div class=" container dialog hide" id="typeName">
+            <div class="table">
+                <table class="table table-bordered table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>材料类别编码</th>
+                            <th>材料类别名称</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!------dialog2------------->
+        <div class=" container dialog hide" id="StuffName">
+            <div class="table">
+                <table class="table table-bordered table-condensed table-hover">
+                    <thead>
+                        <tr>
+                            <th>材料编码</th>
+                            <th>材料名称</th>
+                        </tr>
+                    </thead>
+                    <tbody id=""></tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!------dialog3 数量------------->
+        <div id="count" class=" hide">
+            <div><input class="form-control" maxlength="7" /></div>
+            <div>
+                <button class="btn btn-block">确定</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    (function () {
+        var dialog1 = $(".dialog").eq(0);
+        var dialog2 = $(".dialog").eq(1);
+        var $first = null;
+        var $me = null;
+        var $count = null;
+        //数量框
+
+        $("#CheckType .count").click(function (){
+            if ($(this).siblings().text().length!=0){
+                $count = $(this);
+                $("#count").removeClass("hide");
+                $("#count input[type='text']").focus();
+            }
+           
+            return false;
+        });
+
+        //关闭数量框
+        $("#count .btn").click(function () {
+            var reg = /^[1-9][0-9]*$/;
+            var text = $("#count input").val().trim();
+            if (reg.test(text))
+                $count.text(text);
+            $("#count input").val("");
+            $("#count").addClass("hide");
+        })
+        //选择框
+        $("#CheckType .Choice").click(function () {
+            $first = $(this).parents(".row");
+            $.ajax({
+                url: "/ChaiGou/GetAllType",
+                type: "post",
+                success: function (data) {
+                    var html = "";
+                    $.each(data, function (index, item) {
+                        html += '<tr>'
+                            + ' <td>' + item.Id + '</td>'
+                            + ' <td>' + item.text + '</td>'
+                            + '</tr>';
+                    })
+                    dialog1.find("tbody").html($(html));
+                    dialog1.removeClass("hide");
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        })
+
+
+        //类型弹出框 1
+        dialog1.delegate("tr", "click", function () {
+            $me = $(this);
+            var html = "";
+            dialog1.addClass("hide");
+            dialog2.removeClass("hide");
+            $.ajax({
+                url: "/ChaiGou/GetStuffByCode",
+                data: { data: $me.find("td").eq(0).text() },
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        html += '<tr>'
+                            + ' <td>' + item.Id + '</td>'
+                            + ' <td>' + item.name + '</td>'
+                            + '</tr>';
+                    });
+                    $("#StuffName").find("tbody").html($(html));
+                },
+                error: function (e) {
+                    alert(e);
+                }
+            })
+        })
+        //类型弹出框 2
+        dialog2.delegate("tr", "click", function () {
+            var td1 = $(this).find("td").eq(0).text();
+            var td2 = $(this).find("td").eq(1).text();
+            $first.find(".col-xs-4").eq(0).text(td1);
+            $first.find(".col-xs-4").eq(1).text(td2);
+            dialog2.addClass("hide");
+        });
+    })();
+
+    $("#submit").click(function () {
+        var arr =[];
+        $("#content .row").each(function (index,item) {
+            var json = "{";
+        })
+    })
+
+</script>

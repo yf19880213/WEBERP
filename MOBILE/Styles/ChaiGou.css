@@ -1,0 +1,349 @@
+.wrap{
+	position: relative;
+	height: 100%;
+}
+nav{
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 35px;
+	width: 100%;
+	background: #444444;
+	color: #F9F9F9;
+	letter-spacing: 2px;
+}
+nav h1{
+	text-align: center;
+	line-height: 35px;
+	font-size: 16px;
+	font-weight: bold;
+}
+.content{
+	position: absolute;
+	top: 0px;
+	left: 0;
+	right: 0;
+	bottom: 40px;
+	overflow-y: auto;
+}
+.footer{
+	position: absolute;
+	width: 100%;
+	height: 30px;
+	background: #CCCCCC;
+	line-height: 30px;
+	right: 0;	
+	left: 0;
+	bottom: 0;
+}
+.footer:hover{
+	background: #EEEEEE;
+}
+.footer:hover a{
+	color: #EC971F;
+	
+}
+.footer a{
+	font-size: 14px;
+}
+.footer .col-xs-6,.footer .col-xs-6{
+	font-size: 15px;
+	color: #C0A16B;
+}
+.footer .border{
+	border-right:1px solid #31B0D5 ;
+}
+
+.content .row [class^="col-xs"]{
+	text-align: center;
+	padding-left: 0;
+	padding-right: 0;	
+	line-height: 30px;
+
+}
+.color{
+	color: #398439;
+	font-size: 15px;
+}
+.color span{
+	float: right;
+}
+.row .form-control{
+	padding-left: 6px;
+}
+ .red{
+	color: red;
+	z-index: 11;
+}
+.table-responsive .table td{
+	padding: 5px ;
+}
+.table-responsive .table td input{
+	padding: 0;
+}
+.table-responsive{
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+.table .red{
+	font-weight: bold;
+	font-size: 15px;
+	text-align: center;
+	vertical-align: middle;
+}
+.table .form-control{
+	border: none;
+}
+.table th ,.table td{
+	font-size: 14px;
+}
+.form-control{
+	padding: 0;
+}
+.pull-right{
+	font-size: 14px;
+}
+
+.dialog{
+    z-index:11;
+	position: absolute;
+	top:20% ;
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+	padding: 10px;
+	box-shadow: 5px 5px 5px #9D9D9D;
+	overflow: auto;
+}
+
+#typeName tr.active td,#typeName tr.active th{
+	background: #e6a9a9;
+}
+#typeName tr:nth-last-of-type(2n),
+.dialog tr:nth-last-of-type(2n) {
+    background: #BCF1D9;
+    color: #333333;
+}
+table,th{
+   
+    text-align:center;
+}
+table {
+    background: #ffffff;
+
+}
+thead {
+    background: #777676;
+    color: #f6f6f6;
+}
+
+#count{
+    width:80%;
+    height:120px;
+    border:1px solid #eae7e7;
+    border-radius:4px;
+    background:#ffffff;
+    box-shadow:5px 5px 5px #CCCCCC;
+    z-index:12;
+    position:absolute;
+    padding:10px;
+    top:30%;
+    left:10%;
+}
+    #count input{
+        text-indent:10px;
+    }
+    #count .btn {
+        margin-top: 15px;
+        background: #d9edf7;
+        color: #ff004e;
+        font-size: 15px;
+        letter-spacing: 5px;
+    }
+.header .col-xs-4 {
+    background: #cccccc;
+    color: #398439;
+}
+
+ChaiGou.cshtml .col-xs-4{
+    font-size:15px;
+    margin-bottom:10px;
+}
+.row{
+    margin-right:5px;
+    margin-left:5px;
+    margin-bottom:15px;
+}
+#CheckType {
+    margin-top:20px;
+}
+    #CheckType .row {
+        height: 30px;
+        line-height: 30px;
+        font-size: 15px;
+        margin-bottom: 0;
+        border: 1px solid #cccccc;
+        border-bottom: 0;
+        margin-right: -5px;
+        margin-left: -5px;
+        text-align:center;
+    }
+        #CheckType .row:nth-last-child(1) {
+            border-bottom: 1px solid #d5eef0;
+        }
+        #CheckType .row .Choice {
+            height: 100%;
+            border-right: 1px solid #cccccc;
+            border-bottom: 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .count{
+            height:100%;
+        }
+        #CheckType .row .col-xs-4{
+            padding-left:0;
+            padding-right:0;
+        }
+        
+        
+        .wrap {
+            font-size: 15px;
+        }
+.content .row .col-xs-4 span{
+    padding-left:0;
+    padding-right:0;
+    width:100%;
+    display:block;
+    height:34px;
+}
+.footer .row{
+    margin-bottom:0;
+    margin-top:0;
+}
+.dropdown {
+    text-align:left!important;
+    text-indent:10px;
+    border-radius:3px;
+}
+.dropdown .dropdown-menu {
+    right: 0;
+}
+    .dropdown .dropdown-menu{
+        padding:0;
+    }
+    .dropdown .dropdown-menu li {
+        cursor:pointer;
+        height: 34px;
+        line-height: 34px;        
+        font-size: 15px;
+       text-indent:10px;
+       
+    }
+        .dropdown .dropdown-menu li:nth-child(2n) {
+            background: #eeeeee;
+            color: #dcd333;
+        }
+        .dropdown .dropdown-menu li:nth-child(2n+1) {
+            background: #ffffff;
+            color: #999999;
+        }
+.dropdown-menu{
+    max-height:300px;
+    overflow:auto;
+}
+.loading, .finishing {
+    position: absolute;
+    right: 5px;
+    background: #897e76;
+    color: #dfd3d3;
+    width: 20px;
+    height: 20px;
+    line-height: 20px;
+    border-radius: 50%;
+}
+.bigmu {
+    padding: 15px 10px;
+    background: #dfdfdf;
+    border-radius: 4px;
+    box-shadow:5px 5px 5px #9D9D9D;
+}
+.table-responsive{
+    margin-top:0px;
+    margin-bottom:10px;
+}
+.bigmu {
+    margin-top:20px;
+}
+.bigmu .row {
+    margin: 3px 0;
+    height:30px;
+    line-height:30px;
+}
+.bigmu .row .color{
+    background:#29d6ee;
+    border-radius:4px;
+}
+    .bigmu .row .radioBtn {
+        text-align: left;
+        cursor: pointer;
+        height: 30px;
+    }
+    
+    .bigmu .row .radioBtn i {
+        background-image: url('../images/radio_normal.png');
+        background-repeat: no-repeat;
+        float: left;
+        width: 16px;
+        height: 100%;
+        background-position: left center;
+        margin:0 10px;
+    }
+    .bigmu table tbody tr td:nth-child(1){
+        text-align:left;
+    }
+    .bigmu table tbody tr td:nth-child(2) {
+        text-align:right;
+    }
+
+.textleft {
+    text-align: left !important;
+}
+.danhao {
+   
+    color:red;
+}
+.examine {
+    margin: 0 !important;
+    background: #777676;
+    color: #f6f6f6;
+    font-weight: bold;
+}
+    .examine div[class^='col-xs'] {
+        cursor:pointer;
+        line-height:34px;
+    }
+.bigmu .form-control{
+    height: 30px;
+}
+.argue div[class^='col-xs']{
+    height:30px!important;
+}
+.bigmu .row:nth-of-type(1),
+.bigmu .row:nth-of-type(2),
+.bigmu .row:nth-of-type(3),
+.bigmu .row:nth-of-type(1) [class^="col-xs"],
+.bigmu .row:nth-of-type(2) [class^="col-xs"],
+.bigmu .row:nth-of-type(3) [class^="col-xs"] {
+    height: 24px;
+    line-height: 24px;
+}
+#wrapBox .table tbody tr:nth-of-type(2n) {
+    background: #eaeaea;
+    color: #000000;
+}
+#wrapBox{
+    margin:0 15px;
+}

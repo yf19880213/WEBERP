@@ -1,0 +1,71 @@
+﻿
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <style>
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+
+        .container > .row {
+            height: 34px;
+            margin-top: 15px;
+        }
+
+        .container {
+            padding-top: 15px;
+        }
+
+            .container > .row .col-xs-4 {
+                padding-right: 0;
+            }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>名字</th>
+                    <th>数量</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+        <div class="footer">
+            <div class="row">
+                <a href="/Home/Index" class="col-xs-6 text-center border">主页</a>
+                <a href="/" class=" col-xs-6 text-center">退出</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    $.post("/Examine/GetExaminDetail", null, function (e) {
+        var html = "";
+        $.each(e, function (index,item) {
+            html += "<tr><td>" + item.name+"</td><td>"+item.num+"</td></tr>";
+        })
+        $("tbody").html(html);
+    })
+</script>
+

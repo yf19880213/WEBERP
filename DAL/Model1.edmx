@@ -1,0 +1,643 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ERPMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleMane" Type="varchar" MaxLength="20" />
+          <Property Name="CaigouDate" Type="datetime" />
+          <Property Name="Auditoring" Type="int" />
+          <Property Name="MasterId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Exmaine" Type="nchar" MaxLength="10" />
+          <Property Name="ExaminCommen" Type="nchar" MaxLength="30" />
+          <Property Name="Department" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ApplyCommen" Type="nchar" MaxLength="30" />
+          <Property Name="Responsibity" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CailiaoId" Type="varchar" MaxLength="20" />
+          <Property Name="CailiaoName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Num" Type="int" />
+          <Property Name="MasterId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="供应商编码" Type="varchar" MaxLength="20" />
+          <Property Name="材料名称" Type="varchar" MaxLength="100" />
+          <Property Name="单价" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="总金额" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SYS_用户信息表">
+          <Key>
+            <PropertyRef Name="登录名" />
+          </Key>
+          <Property Name="编码" Type="int" Nullable="false" />
+          <Property Name="姓名" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="登录名" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="密码" Type="varchar" MaxLength="50" />
+          <Property Name="权限" Type="varchar" MaxLength="200" />
+          <Property Name="类型" Type="int" />
+          <Property Name="工作组" Type="varchar" MaxLength="16" />
+          <Property Name="AM_SERVER" Type="varchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="T_EMMS_生产设备编码表">
+          <Key>
+            <PropertyRef Name="设备编码" />
+          </Key>
+          <Property Name="设备编码" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="设备简称" Type="varchar" MaxLength="20" />
+          <Property Name="设备编号" Type="nvarchar" MaxLength="50" />
+          <Property Name="设备名称" Type="varchar" MaxLength="100" />
+          <Property Name="计量单位" Type="varchar" MaxLength="10" />
+          <Property Name="购入日期" Type="char" MaxLength="10" />
+          <Property Name="使用日期" Type="char" MaxLength="10" />
+          <Property Name="使用部门编码" Type="char" MaxLength="6" />
+          <Property Name="保管人" Type="varchar" MaxLength="10" />
+          <Property Name="存放地点" Type="varchar" MaxLength="50" />
+          <Property Name="生产厂家" Type="varchar" MaxLength="100" />
+          <Property Name="准备工时" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="产能" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="外形尺寸" Type="varchar" MaxLength="50" />
+          <Property Name="设备类别" Type="varchar" MaxLength="50" />
+          <Property Name="总功率" Type="varchar" MaxLength="50" />
+          <Property Name="照片编码" Type="varchar" MaxLength="50" />
+          <Property Name="设备状况" Type="varchar" MaxLength="50" />
+          <Property Name="备注" Type="varchar" MaxLength="200" />
+          <Property Name="机型类别" Type="varchar" MaxLength="20" />
+          <Property Name="型号" Type="varchar" MaxLength="50" />
+          <Property Name="最大尺寸" Type="varchar" MaxLength="20" />
+          <Property Name="最小尺寸" Type="varchar" MaxLength="20" />
+          <Property Name="纸张厚度" Type="varchar" MaxLength="30" />
+          <Property Name="重量" Type="varchar" MaxLength="10" />
+          <Property Name="最大工作压力" Type="varchar" MaxLength="20" />
+          <Property Name="最高工作速度" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“ERPMS.dbo.T_FCMS_统计_供应商明细表”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="T_FCMS_统计_供应商明细表">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="供应商编码" Type="char" MaxLength="6" />
+          <Property Name="入库单号" Type="char" MaxLength="14" />
+          <Property Name="订单号" Type="char" MaxLength="14" />
+          <Property Name="制单日期" Type="char" MaxLength="10" />
+          <Property Name="材料名称" Type="varchar" MaxLength="100" />
+          <Property Name="规格型号" Type="varchar" MaxLength="50" />
+          <Property Name="计量单位" Type="varchar" MaxLength="20" />
+          <Property Name="数量" Type="int" />
+          <Property Name="金额" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="开票金额" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="付款金额" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="T_MIMS_材料编码表">
+          <Key>
+            <PropertyRef Name="材料编码" />
+          </Key>
+          <Property Name="材料类别编码" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="仓库编码" Type="nvarchar" MaxLength="10" />
+          <Property Name="材料编码" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="材料名称" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="规格型号" Type="varchar" MaxLength="50" />
+          <Property Name="备注" Type="varchar" MaxLength="100" />
+          <Property Name="计量单位" Type="varchar" MaxLength="20" />
+          <Property Name="计划单价" Type="numeric" Precision="18" Scale="6" />
+          <Property Name="图片存储路径" Type="varchar" MaxLength="255" />
+          <Property Name="安全库存上限" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="安全库存下限" Type="numeric" Precision="18" Scale="4" />
+          <Property Name="辅料标志" Type="int" />
+          <Property Name="主料标志" Type="int" />
+          <Property Name="废料编码" Type="varchar" MaxLength="50" />
+          <Property Name="废料名称" Type="varchar" MaxLength="100" />
+          <Property Name="废料标志" Type="int" />
+          <Property Name="禁用标识" Type="int" />
+        </EntityType>
+        <EntityType Name="T_MIMS_材料类别编码表">
+          <Key>
+            <PropertyRef Name="材料类别编码" />
+          </Key>
+          <Property Name="材料类别编码" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="材料类别名称" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="备注" Type="varchar" MaxLength="100" />
+          <Property Name="统计类别" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“ERPMS.dbo.T_PHMS_统计_供应商明细表”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="T_PHMS_统计_供应商明细表">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="材料名称" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="供应商编码" Type="char" MaxLength="6" />
+          <Property Name="入库单号" Type="char" MaxLength="14" />
+          <Property Name="订单号" Type="char" MaxLength="14" />
+          <Property Name="制单日期" Type="char" MaxLength="10" />
+          <Property Name="材料名称" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="规格型号" Type="varchar" MaxLength="50" />
+          <Property Name="计量单位" Type="varchar" MaxLength="20" />
+          <Property Name="数量" Type="int" />
+          <Property Name="金额" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="开票金额" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="付款金额" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="Table_岗位编码表">
+          <Key>
+            <PropertyRef Name="岗位编码" />
+          </Key>
+          <Property Name="岗位编码" Type="char" MaxLength="6" Nullable="false" />
+          <Property Name="岗位名称" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="岗位系数" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="部门编码" Type="char" MaxLength="6" />
+          <Property Name="备注" Type="varchar" MaxLength="100" />
+          <Property Name="Flag" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Table_组织编码表">
+          <Key>
+            <PropertyRef Name="编码" />
+          </Key>
+          <Property Name="编码" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="名称" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="上级编码" Type="char" MaxLength="6" />
+          <Property Name="科室标识" Type="int" />
+          <Property Name="车间标识" Type="int" />
+          <Property Name="班组标识" Type="int" />
+          <Property Name="负责人" Type="char" MaxLength="6" />
+          <Property Name="电话" Type="varchar" MaxLength="50" />
+          <Property Name="车间属性" Type="varchar" MaxLength="20" />
+          <Property Name="备注" Type="varchar" MaxLength="100" />
+          <Property Name="质量把控" Type="int" />
+        </EntityType>
+        <Association Name="FK_MaterialNo_MaterialCategory">
+          <End Role="T_MIMS_材料类别编码表" Type="Self.T_MIMS_材料类别编码表" Multiplicity="1" />
+          <End Role="T_MIMS_材料编码表" Type="Self.T_MIMS_材料编码表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_MIMS_材料类别编码表">
+              <PropertyRef Name="材料类别编码" />
+            </Principal>
+            <Dependent Role="T_MIMS_材料编码表">
+              <PropertyRef Name="材料类别编码" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ERPMSModelStoreContainer">
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_用户信息表" EntityType="Self.SYS_用户信息表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_EMMS_生产设备编码表" EntityType="Self.T_EMMS_生产设备编码表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_MIMS_材料编码表" EntityType="Self.T_MIMS_材料编码表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_MIMS_材料类别编码表" EntityType="Self.T_MIMS_材料类别编码表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_岗位编码表" EntityType="Self.Table_岗位编码表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_组织编码表" EntityType="Self.Table_组织编码表" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_FCMS_统计_供应商明细表" EntityType="Self.T_FCMS_统计_供应商明细表" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T_FCMS_统计_供应商明细表].[ID] AS [ID], 
+    [T_FCMS_统计_供应商明细表].[供应商编码] AS [供应商编码], 
+    [T_FCMS_统计_供应商明细表].[入库单号] AS [入库单号], 
+    [T_FCMS_统计_供应商明细表].[订单号] AS [订单号], 
+    [T_FCMS_统计_供应商明细表].[制单日期] AS [制单日期], 
+    [T_FCMS_统计_供应商明细表].[材料名称] AS [材料名称], 
+    [T_FCMS_统计_供应商明细表].[规格型号] AS [规格型号], 
+    [T_FCMS_统计_供应商明细表].[计量单位] AS [计量单位], 
+    [T_FCMS_统计_供应商明细表].[数量] AS [数量], 
+    [T_FCMS_统计_供应商明细表].[金额] AS [金额], 
+    [T_FCMS_统计_供应商明细表].[开票金额] AS [开票金额], 
+    [T_FCMS_统计_供应商明细表].[付款金额] AS [付款金额]
+    FROM [dbo].[T_FCMS_统计_供应商明细表] AS [T_FCMS_统计_供应商明细表]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="T_PHMS_统计_供应商明细表" EntityType="Self.T_PHMS_统计_供应商明细表" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [T_PHMS_统计_供应商明细表].[ID] AS [ID], 
+    [T_PHMS_统计_供应商明细表].[供应商编码] AS [供应商编码], 
+    [T_PHMS_统计_供应商明细表].[入库单号] AS [入库单号], 
+    [T_PHMS_统计_供应商明细表].[订单号] AS [订单号], 
+    [T_PHMS_统计_供应商明细表].[制单日期] AS [制单日期], 
+    [T_PHMS_统计_供应商明细表].[材料名称] AS [材料名称], 
+    [T_PHMS_统计_供应商明细表].[规格型号] AS [规格型号], 
+    [T_PHMS_统计_供应商明细表].[计量单位] AS [计量单位], 
+    [T_PHMS_统计_供应商明细表].[数量] AS [数量], 
+    [T_PHMS_统计_供应商明细表].[金额] AS [金额], 
+    [T_PHMS_统计_供应商明细表].[开票金额] AS [开票金额], 
+    [T_PHMS_统计_供应商明细表].[付款金额] AS [付款金额]
+    FROM [dbo].[T_PHMS_统计_供应商明细表] AS [T_PHMS_统计_供应商明细表]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_MaterialNo_MaterialCategory" Association="Self.FK_MaterialNo_MaterialCategory">
+            <End Role="T_MIMS_材料类别编码表" EntitySet="T_MIMS_材料类别编码表" />
+            <End Role="T_MIMS_材料编码表" EntitySet="T_MIMS_材料编码表" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ERPMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleMane" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CaigouDate" Type="DateTime" Precision="3" />
+          <Property Name="Auditoring" Type="Int32" />
+          <Property Name="MasterId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Exmaine" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExaminCommen" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ApplyCommen" Type="String" MaxLength="30" FixedLength="true" Unicode="true" />
+          <Property Name="Responsibity" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="CailiaoId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="CailiaoName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Num" Type="Int32" />
+          <Property Name="MasterId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="供应商编码" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="材料名称" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="总金额" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="单价" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SYS_用户信息表">
+          <Key>
+            <PropertyRef Name="登录名" />
+          </Key>
+          <Property Name="编码" Type="Int32" Nullable="false" />
+          <Property Name="姓名" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="登录名" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="密码" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="权限" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="类型" Type="Int32" />
+          <Property Name="工作组" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="AM_SERVER" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="ERPMSEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" />
+          <EntitySet Name="SYS_用户信息表" EntityType="Self.SYS_用户信息表" />
+          <EntitySet Name="T_MIMS_材料编码表" EntityType="ERPMSModel.T_MIMS_材料编码表" />
+          <EntitySet Name="T_MIMS_材料类别编码表" EntityType="ERPMSModel.T_MIMS_材料类别编码表" />
+          <EntitySet Name="Table_岗位编码表" EntityType="ERPMSModel.Table_岗位编码表" />
+          <AssociationSet Name="FK_MaterialNo_MaterialCategory" Association="ERPMSModel.FK_MaterialNo_MaterialCategory">
+            <End Role="T_MIMS_材料类别编码表" EntitySet="T_MIMS_材料类别编码表" />
+            <End Role="T_MIMS_材料编码表" EntitySet="T_MIMS_材料编码表" />
+          </AssociationSet>
+          <EntitySet Name="T_EMMS_生产设备编码表" EntityType="ERPMSModel.T_EMMS_生产设备编码表" />
+          <EntitySet Name="Table_组织编码表" EntityType="ERPMSModel.Table_组织编码表" />
+          <EntitySet Name="T_FCMS_统计_供应商明细表" EntityType="ERPMSModel.T_FCMS_统计_供应商明细表" />
+          <EntitySet Name="T_PHMS_统计_供应商明细表" EntityType="ERPMSModel.T_PHMS_统计_供应商明细表" />
+        </EntityContainer>
+        <EntityType Name="T_MIMS_材料编码表">
+          <Key>
+            <PropertyRef Name="材料编码" />
+          </Key>
+          <Property Name="材料类别编码" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="仓库编码" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="材料编码" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="材料名称" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="规格型号" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="备注" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="计量单位" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="计划单价" Type="Decimal" Precision="18" Scale="6" />
+          <Property Name="图片存储路径" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="安全库存上限" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="安全库存下限" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="辅料标志" Type="Int32" />
+          <Property Name="主料标志" Type="Int32" />
+          <Property Name="废料编码" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="废料名称" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="废料标志" Type="Int32" />
+          <Property Name="禁用标识" Type="Int32" />
+          <NavigationProperty Name="T_MIMS_材料类别编码表" Relationship="ERPMSModel.FK_MaterialNo_MaterialCategory" FromRole="T_MIMS_材料编码表" ToRole="T_MIMS_材料类别编码表" />
+        </EntityType>
+        <EntityType Name="T_MIMS_材料类别编码表">
+          <Key>
+            <PropertyRef Name="材料类别编码" />
+          </Key>
+          <Property Name="材料类别编码" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="材料类别名称" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="备注" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="统计类别" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_MIMS_材料编码表" Relationship="ERPMSModel.FK_MaterialNo_MaterialCategory" FromRole="T_MIMS_材料类别编码表" ToRole="T_MIMS_材料编码表" />
+        </EntityType>
+        <EntityType Name="Table_岗位编码表">
+          <Key>
+            <PropertyRef Name="岗位编码" />
+          </Key>
+          <Property Name="岗位编码" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="岗位名称" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="岗位系数" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="部门编码" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="备注" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Flag" Type="Byte" />
+        </EntityType>
+        <Association Name="FK_MaterialNo_MaterialCategory">
+          <End Type="ERPMSModel.T_MIMS_材料类别编码表" Role="T_MIMS_材料类别编码表" Multiplicity="1" />
+          <End Type="ERPMSModel.T_MIMS_材料编码表" Role="T_MIMS_材料编码表" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_MIMS_材料类别编码表">
+              <PropertyRef Name="材料类别编码" />
+            </Principal>
+            <Dependent Role="T_MIMS_材料编码表">
+              <PropertyRef Name="材料类别编码" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="T_EMMS_生产设备编码表">
+          <Key>
+            <PropertyRef Name="设备编码" />
+          </Key>
+          <Property Name="设备编码" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="设备简称" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="设备编号" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="设备名称" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="计量单位" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="购入日期" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="使用日期" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="使用部门编码" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="保管人" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="存放地点" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="生产厂家" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="准备工时" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="产能" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="外形尺寸" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="设备类别" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="总功率" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="照片编码" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="设备状况" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="备注" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="机型类别" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="型号" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="最大尺寸" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="最小尺寸" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="纸张厚度" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="重量" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="最大工作压力" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="最高工作速度" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Table_组织编码表">
+          <Key>
+            <PropertyRef Name="编码" />
+          </Key>
+          <Property Name="编码" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="名称" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="上级编码" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="科室标识" Type="Int32" />
+          <Property Name="车间标识" Type="Int32" />
+          <Property Name="班组标识" Type="Int32" />
+          <Property Name="负责人" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="电话" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="车间属性" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="备注" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="质量把控" Type="Int32" />
+        </EntityType>
+        <EntityType Name="T_FCMS_统计_供应商明细表">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="供应商编码" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="入库单号" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="订单号" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="制单日期" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="材料名称" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="规格型号" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="计量单位" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="数量" Type="Int32" />
+          <Property Name="金额" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="开票金额" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="付款金额" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="T_PHMS_统计_供应商明细表">
+          <Key>
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="材料名称" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="供应商编码" Type="String" MaxLength="6" FixedLength="true" Unicode="false" />
+          <Property Name="入库单号" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="订单号" Type="String" MaxLength="14" FixedLength="true" Unicode="false" />
+          <Property Name="制单日期" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="材料名称" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="规格型号" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="计量单位" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="数量" Type="Int32" />
+          <Property Name="金额" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="开票金额" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="付款金额" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ERPMSModelStoreContainer" CdmEntityContainer="ERPMSEntities1">
+          <EntitySetMapping Name="Purchase">
+            <EntityTypeMapping TypeName="ERPMSModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SaleMane" ColumnName="SaleMane" />
+                <ScalarProperty Name="CaigouDate" ColumnName="CaigouDate" />
+                <ScalarProperty Name="Auditoring" ColumnName="Auditoring" />
+                <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+                <ScalarProperty Name="Exmaine" ColumnName="Exmaine" />
+                <ScalarProperty Name="ExaminCommen" ColumnName="ExaminCommen" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="ApplyCommen" ColumnName="ApplyCommen" />
+                <ScalarProperty Name="Responsibity" ColumnName="Responsibity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDetail">
+            <EntityTypeMapping TypeName="ERPMSModel.PurchaseDetail">
+              <MappingFragment StoreEntitySet="PurchaseDetail">
+                <ScalarProperty Name="单价" ColumnName="单价" />
+                <ScalarProperty Name="总金额" ColumnName="总金额" />
+                <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+                <ScalarProperty Name="供应商编码" ColumnName="供应商编码" />
+                <ScalarProperty Name="CailiaoId" ColumnName="CailiaoId" />
+                <ScalarProperty Name="CailiaoName" ColumnName="CailiaoName" />
+                <ScalarProperty Name="Num" ColumnName="Num" />
+                <ScalarProperty Name="MasterId" ColumnName="MasterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_用户信息表">
+            <EntityTypeMapping TypeName="ERPMSModel.SYS_用户信息表">
+              <MappingFragment StoreEntitySet="SYS_用户信息表">
+                <ScalarProperty Name="编码" ColumnName="编码" />
+                <ScalarProperty Name="姓名" ColumnName="姓名" />
+                <ScalarProperty Name="登录名" ColumnName="登录名" />
+                <ScalarProperty Name="密码" ColumnName="密码" />
+                <ScalarProperty Name="权限" ColumnName="权限" />
+                <ScalarProperty Name="类型" ColumnName="类型" />
+                <ScalarProperty Name="工作组" ColumnName="工作组" />
+                <ScalarProperty Name="AM_SERVER" ColumnName="AM_SERVER" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_MIMS_材料编码表">
+            <EntityTypeMapping TypeName="ERPMSModel.T_MIMS_材料编码表">
+              <MappingFragment StoreEntitySet="T_MIMS_材料编码表">
+                <ScalarProperty Name="禁用标识" ColumnName="禁用标识" />
+                <ScalarProperty Name="废料标志" ColumnName="废料标志" />
+                <ScalarProperty Name="废料名称" ColumnName="废料名称" />
+                <ScalarProperty Name="废料编码" ColumnName="废料编码" />
+                <ScalarProperty Name="主料标志" ColumnName="主料标志" />
+                <ScalarProperty Name="辅料标志" ColumnName="辅料标志" />
+                <ScalarProperty Name="安全库存下限" ColumnName="安全库存下限" />
+                <ScalarProperty Name="安全库存上限" ColumnName="安全库存上限" />
+                <ScalarProperty Name="图片存储路径" ColumnName="图片存储路径" />
+                <ScalarProperty Name="计划单价" ColumnName="计划单价" />
+                <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+                <ScalarProperty Name="备注" ColumnName="备注" />
+                <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+                <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+                <ScalarProperty Name="材料编码" ColumnName="材料编码" />
+                <ScalarProperty Name="仓库编码" ColumnName="仓库编码" />
+                <ScalarProperty Name="材料类别编码" ColumnName="材料类别编码" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_MIMS_材料类别编码表">
+            <EntityTypeMapping TypeName="ERPMSModel.T_MIMS_材料类别编码表">
+              <MappingFragment StoreEntitySet="T_MIMS_材料类别编码表">
+                <ScalarProperty Name="统计类别" ColumnName="统计类别" />
+                <ScalarProperty Name="备注" ColumnName="备注" />
+                <ScalarProperty Name="材料类别名称" ColumnName="材料类别名称" />
+                <ScalarProperty Name="材料类别编码" ColumnName="材料类别编码" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_岗位编码表">
+            <EntityTypeMapping TypeName="ERPMSModel.Table_岗位编码表">
+              <MappingFragment StoreEntitySet="Table_岗位编码表">
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+                <ScalarProperty Name="备注" ColumnName="备注" />
+                <ScalarProperty Name="部门编码" ColumnName="部门编码" />
+                <ScalarProperty Name="岗位系数" ColumnName="岗位系数" />
+                <ScalarProperty Name="岗位名称" ColumnName="岗位名称" />
+                <ScalarProperty Name="岗位编码" ColumnName="岗位编码" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_EMMS_生产设备编码表">
+            <EntityTypeMapping TypeName="ERPMSModel.T_EMMS_生产设备编码表">
+              <MappingFragment StoreEntitySet="T_EMMS_生产设备编码表">
+                <ScalarProperty Name="最高工作速度" ColumnName="最高工作速度" />
+                <ScalarProperty Name="最大工作压力" ColumnName="最大工作压力" />
+                <ScalarProperty Name="重量" ColumnName="重量" />
+                <ScalarProperty Name="纸张厚度" ColumnName="纸张厚度" />
+                <ScalarProperty Name="最小尺寸" ColumnName="最小尺寸" />
+                <ScalarProperty Name="最大尺寸" ColumnName="最大尺寸" />
+                <ScalarProperty Name="型号" ColumnName="型号" />
+                <ScalarProperty Name="机型类别" ColumnName="机型类别" />
+                <ScalarProperty Name="备注" ColumnName="备注" />
+                <ScalarProperty Name="设备状况" ColumnName="设备状况" />
+                <ScalarProperty Name="照片编码" ColumnName="照片编码" />
+                <ScalarProperty Name="总功率" ColumnName="总功率" />
+                <ScalarProperty Name="设备类别" ColumnName="设备类别" />
+                <ScalarProperty Name="外形尺寸" ColumnName="外形尺寸" />
+                <ScalarProperty Name="产能" ColumnName="产能" />
+                <ScalarProperty Name="准备工时" ColumnName="准备工时" />
+                <ScalarProperty Name="生产厂家" ColumnName="生产厂家" />
+                <ScalarProperty Name="存放地点" ColumnName="存放地点" />
+                <ScalarProperty Name="保管人" ColumnName="保管人" />
+                <ScalarProperty Name="使用部门编码" ColumnName="使用部门编码" />
+                <ScalarProperty Name="使用日期" ColumnName="使用日期" />
+                <ScalarProperty Name="购入日期" ColumnName="购入日期" />
+                <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+                <ScalarProperty Name="设备名称" ColumnName="设备名称" />
+                <ScalarProperty Name="设备编号" ColumnName="设备编号" />
+                <ScalarProperty Name="设备简称" ColumnName="设备简称" />
+                <ScalarProperty Name="设备编码" ColumnName="设备编码" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Table_组织编码表">
+            <EntityTypeMapping TypeName="ERPMSModel.Table_组织编码表">
+              <MappingFragment StoreEntitySet="Table_组织编码表">
+                <ScalarProperty Name="质量把控" ColumnName="质量把控" />
+                <ScalarProperty Name="备注" ColumnName="备注" />
+                <ScalarProperty Name="车间属性" ColumnName="车间属性" />
+                <ScalarProperty Name="电话" ColumnName="电话" />
+                <ScalarProperty Name="负责人" ColumnName="负责人" />
+                <ScalarProperty Name="班组标识" ColumnName="班组标识" />
+                <ScalarProperty Name="车间标识" ColumnName="车间标识" />
+                <ScalarProperty Name="科室标识" ColumnName="科室标识" />
+                <ScalarProperty Name="上级编码" ColumnName="上级编码" />
+                <ScalarProperty Name="名称" ColumnName="名称" />
+                <ScalarProperty Name="编码" ColumnName="编码" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_FCMS_统计_供应商明细表">
+            <EntityTypeMapping TypeName="ERPMSModel.T_FCMS_统计_供应商明细表">
+              <MappingFragment StoreEntitySet="T_FCMS_统计_供应商明细表">
+                <ScalarProperty Name="付款金额" ColumnName="付款金额" />
+                <ScalarProperty Name="开票金额" ColumnName="开票金额" />
+                <ScalarProperty Name="金额" ColumnName="金额" />
+                <ScalarProperty Name="数量" ColumnName="数量" />
+                <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+                <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+                <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+                <ScalarProperty Name="制单日期" ColumnName="制单日期" />
+                <ScalarProperty Name="订单号" ColumnName="订单号" />
+                <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+                <ScalarProperty Name="供应商编码" ColumnName="供应商编码" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_PHMS_统计_供应商明细表">
+            <EntityTypeMapping TypeName="ERPMSModel.T_PHMS_统计_供应商明细表">
+              <MappingFragment StoreEntitySet="T_PHMS_统计_供应商明细表">
+                <ScalarProperty Name="付款金额" ColumnName="付款金额" />
+                <ScalarProperty Name="开票金额" ColumnName="开票金额" />
+                <ScalarProperty Name="金额" ColumnName="金额" />
+                <ScalarProperty Name="数量" ColumnName="数量" />
+                <ScalarProperty Name="计量单位" ColumnName="计量单位" />
+                <ScalarProperty Name="规格型号" ColumnName="规格型号" />
+                <ScalarProperty Name="材料名称" ColumnName="材料名称" />
+                <ScalarProperty Name="制单日期" ColumnName="制单日期" />
+                <ScalarProperty Name="订单号" ColumnName="订单号" />
+                <ScalarProperty Name="入库单号" ColumnName="入库单号" />
+                <ScalarProperty Name="供应商编码" ColumnName="供应商编码" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

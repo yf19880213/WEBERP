@@ -1,0 +1,13 @@
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\DAL.dll.config
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\DAL.dll
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\DAL.pdb
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\EntityFramework.dll
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\EntityFramework.SqlServer.dll
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\EntityFramework.xml
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\EntityFramework.SqlServer.xml
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+D:\易飞\NEWPROJECT\MOBILE1\DAL\bin\Debug\zh-Hans\EntityFramework.SqlServer.resources.dll
+D:\易飞\NEWPROJECT\MOBILE1\DAL\obj\Debug\DAL.csprojResolveAssemblyReference.cache
+D:\易飞\NEWPROJECT\MOBILE1\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\易飞\NEWPROJECT\MOBILE1\DAL\obj\Debug\DAL.dll
+D:\易飞\NEWPROJECT\MOBILE1\DAL\obj\Debug\DAL.pdb

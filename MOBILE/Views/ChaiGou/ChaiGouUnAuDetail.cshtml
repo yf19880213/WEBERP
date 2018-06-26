@@ -1,0 +1,92 @@
+﻿
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>采购明细</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="~/Styles/reset.css" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+    <script src="~/Scripts/hrefwin.js"></script>
+    <style>
+        #content .row:nth-child(2n+1) {
+            background: #d5eef0;
+        }
+
+        #content .row:hover {
+            color: #808080;
+            background: #e6eaff;
+        }
+        .container>.row{
+            height:34px;
+            margin-top:15px;
+        }
+        .container > .row .col-xs-4{
+           padding-right:0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="CheckType">
+            <div class="row header">
+                <div class="col-xs-4">材料编码</div>
+                <div class="col-xs-4">产品名称</div>
+                <div class="col-xs-4">数量</div>
+            </div>
+            <div id="content"></div>
+            
+        </div>
+        <div class="row">
+            <div class="col-xs-4 color"><a class="btn btn-block bg-info" href="/Home/Index" id="_loading">返回主页</a></div>
+            <div class="col-xs-6 col-xs-offset-1" id="detail"><a class="btn bg-info" href="/ChaiGou/index">继续采购</a></div>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <a href="javascript:;" class="col-xs-6 text-center border" id="loading">待审核<b class="loading bg-red">2</b></a>
+                <a href="javascript:;" class=" col-xs-6 text-center" id="finishing">以审核<b class="finishing bg-red">2</b></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script type="text/javascript"> 
+    $.post("/ChaiGou/ShowDetail", null, function (res) {
+        var html = "";
+        $.each(res, function (index,item) {
+            html += '<div class="row"><div class="col-xs-4 Choice">'
+                + item.cailiaoid + '</div><div class="col-xs-4 Choice">'
+                + item.cailiaoname + '</div><div  class="col-xs-4 Choice">'
+                + item.num + '</div></div>';          
+        })
+
+        $("#content").html(html);
+        var len = $("#content .row").length;
+        if (len % 2 != 0) {
+            $("#content .row:nth-last-child(1)").css("border-bottom", "1px solid #d5eef0");
+        } else
+            $("#content .row:nth-last-child(1)").css("border-bottom", "1px solid #cccccc");
+    })
+    $.post("/ChaiGou/GetLoadingCount", null, function (res) {
+        if (res == '0') {
+            $(".loading").addClass("hide");
+            return;
+        }
+        $(".loading").removeClass("hide").text(res);
+    })
+    $.post("/ChaiGou/GetFinishCount", null, function (res) {
+        if (res == '0') {
+            $(".finishing").addClass("hide");
+            return;
+        }
+        $(".finishing").removeClass("hide").text(res);
+    })
+
+   
+</script>

@@ -1,0 +1,75 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>采购审核登录</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <link rel="shortcut icon" href="~/images/logo.ico" />
+    <link rel="bookmark" href="~/images/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/bootstrap.min.css" />
+    <script src="~/Scripts/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>  
+    <link href="~/Styles/reset.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/Styles/ChaiGou.css" />
+   
+    <style>
+        .row{
+            margin-top:15px;
+        }
+        .col-cs-4{
+            position:relative;
+        }
+        .finishing,.loading{
+            top:0px;
+        }
+        .col-xs-4 .bg-info{
+            width:100%;
+        }
+        .col-xs-12 .btn{
+            width:100%;
+        }
+        #granted{
+            padding:0 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wrap container">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12 color "><a href="javascript:;" class="btn bg-info" id="Examine">未审核<b class="loading">1</b></a></div>          
+            </div>
+            
+            <div id="wrapBox"></div>
+            <div class="row conclusion">
+                <div class="col-xs-12  color "><a class="btn bg-info">已审核<b class="finishing">2</b></a></div>
+            </div>
+            <div id="granted"> </div>
+           
+        </div>  
+        <div class="footer">
+            <div class="row">
+                <a href="/Home/Index" class="col-xs-6 text-center border">主页</a>
+                <a href="/" class=" col-xs-6 text-center">退出</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="~/Scripts/Examine.js"></script>
+<script src="~/Scripts/hrefwin.js"></script>
+<script type="text/javascript">
+    var count = 0;
+    $.post("/ChaiGou/GetLoadingCountEximine", null, function (data) {     
+        count = data;
+        $(".loading").text(data);
+        console.clear();
+    })
+    $.post("/ChaiGou/GetFinishCount", null, function (data) {
+        $(".finishing").text(data);
+    })
+  
+
+    
+</script>
